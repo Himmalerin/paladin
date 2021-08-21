@@ -6,7 +6,7 @@ module.exports = {
 		interaction.reply(
 			[
 				`Hey there, I'm ${interaction.client.user.username}, your local moderation bot!`,
-				`I'm open-source and available under the AGPL license.  You can check out my code here: <https://github.com/himmalerin/paladin>.`,
+				`I'm open-source and available under the EUPL license.  You can check out my code here: <https://github.com/himmalerin/paladin>.`,
 			].join("\n")
 		);
 	},
