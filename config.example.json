@@ -1,0 +1,65 @@
+{
+	"clientId": "012345678901234567",
+	"guildId": "012345678901234567",
+	"token": "xxxxxxxxxxxxxxxxxxxxxxxx.xxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxx",
+
+	"channels": {
+		"portal": "012345678901234567",
+		"reactions": "012345678901234567",
+		"log": {
+			"public": "012345678901234567"
+		}
+	},
+
+	"bannedWords": {
+		"satiated": ["word1"],
+		"hungry": ["word2"]
+	},
+
+	"reactionRoles": [
+		{
+			"name": "Group 1",
+			"customId": "group_1",
+			"roles": [
+				{
+					"id": "012345678901234567",
+					"label": "Role 1",
+					"emoji": {
+						"id": null,
+						"name": "🟥"
+					}
+				},
+				{
+					"id": "012345678901234567",
+					"label": "Role 2",
+					"emoji": {
+						"id": null,
+						"name": "🟧"
+					}
+				}
+			]
+		},
+		{
+			"name": "Group 2",
+			"customId": "group_2",
+			"roles": [
+				{
+					"id": "012345678901234567",
+					"label": "Role 3",
+					"emoji": {
+						"id": null,
+						"name": "🟩"
+					}
+				},
+				{
+					"id": "012345678901234567",
+					"label": "Role 4",
+					"emoji": {
+						"id": null,
+						"name": "🟦"
+					}
+				}
+			]
+		}
+	]
+}
