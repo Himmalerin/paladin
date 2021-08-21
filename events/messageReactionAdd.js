@@ -7,7 +7,9 @@ module.exports = {
 			return;
 		}
 
-		if (reaction.count >= 8) {
+		console.log(reaction.message.attachments.first());
+
+		if (reaction.count >= 1) {
 			const scrapbookChannel = client.channels.cache.get(channels.scrapbook);
 
 			scrapbookChannel.send({
@@ -20,6 +22,7 @@ module.exports = {
 							icon_url: reaction.message.author.displayAvatarURL(),
 						},
 						description: reaction.message.content.length < 2000 ? reaction.message.content : "Message too long to display!",
+						...(reaction.message.attachments.first() && { image: { url: reaction.message.attachments.first().url } }),
 						timestamp: new Date(),
 					},
 				],
