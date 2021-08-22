@@ -7,7 +7,7 @@ module.exports = {
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 
 		// Set up the button collector on the ready event instead of on the interactionCreate event to avoid errors
-		const collector = (await client.channels.fetch(channels.reactions)).createMessageComponentCollector({
+		const collector = (await client.channels.fetch(channels.reactions.id)).createMessageComponentCollector({
 			componentType: "BUTTON",
 		});
 

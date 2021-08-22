@@ -36,7 +36,7 @@ module.exports = {
 			})
 			.then(() => interaction.reply(`User successfully unbanned!`))
 			.then(() => {
-				const logChannel = interaction.client.channels.cache.get(channels.log.public);
+				const logChannel = interaction.client.channels.cache.get(channels.log.unban.id);
 				logChannel.send({
 					embeds: [
 						{

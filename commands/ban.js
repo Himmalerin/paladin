@@ -35,7 +35,7 @@ module.exports = {
 				reason: reason ?? `Contact ${author.user.username}#${author.user.discriminator} (${author.user.id}) for details.`,
 			})
 			.then(() => {
-				const logChannel = interaction.client.channels.cache.get(channels.log.public);
+				const logChannel = interaction.client.channels.cache.get(channels.log.ban.id);
 				logChannel.send({
 					embeds: [
 						{

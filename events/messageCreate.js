@@ -26,7 +26,7 @@ module.exports = {
 		const word = hasSatiatedBannedWord || hasHungryBannedWord;
 
 		if (word) {
-			const logChannel = client.channels.cache.get(channels.log.public);
+			const logChannel = client.channels.cache.get(channels.log.warn.id);
 			logChannel.send({
 				embeds: [
 					{

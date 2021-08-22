@@ -11,7 +11,7 @@ module.exports = {
 			return interaction.reply("You need the `MANAGE_ROLES` permission to do that.");
 		}
 
-		const location = await interaction.client.channels.fetch(channels.reactions);
+		const location = await interaction.client.channels.fetch(channels.reactions.id);
 
 		reactionRoles.forEach((group) => {
 			const buttons = [];

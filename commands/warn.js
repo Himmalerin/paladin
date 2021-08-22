@@ -29,7 +29,7 @@ module.exports = {
 			return interaction.reply("That user isn't in this server.");
 		}
 
-		const logChannel = interaction.client.channels.cache.get(channels.log.public);
+		const logChannel = interaction.client.channels.cache.get(channels.log.warn.id);
 
 		logChannel
 			.send({

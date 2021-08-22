@@ -4,11 +4,28 @@
 	"token": "xxxxxxxxxxxxxxxxxxxxxxxx.xxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxx",
 
 	"channels": {
-		"portal": "012345678901234567",
-		"reactions": "012345678901234567",
-		"scrapbook": "012345678901234567",
+		"portal": {
+			"id": "012345678901234567"
+		},
+		"reactions": {
+			"id": "012345678901234567"
+		},
+		"scrapbook": {
+			"id": "012345678901234567"
+		},
 		"log": {
-			"public": "012345678901234567"
+			"warn": {
+				"id": "012345678901234567"
+			},
+			"kick": {
+				"id": "012345678901234567"
+			},
+			"ban": {
+				"id": "012345678901234567"
+			},
+			"unban": {
+				"id": "012345678901234567"
+			}
 		}
 	},
 

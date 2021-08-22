@@ -9,8 +9,8 @@ module.exports = {
 
 		console.log(reaction.message.attachments.first());
 
-		if (reaction.count >= 1) {
-			const scrapbookChannel = client.channels.cache.get(channels.scrapbook);
+		if (reaction.count >= 5) {
+			const scrapbookChannel = client.channels.cache.get(channels.scrapbook.id);
 
 			scrapbookChannel.send({
 				embeds: [
