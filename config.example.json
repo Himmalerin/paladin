@@ -13,7 +13,7 @@
 		"scrapbook": {
 			"id": "012345678901234567",
 			"emoji": "⭐",
-			"minimumReactions": 8
+			"minimumReactions": 5
 		},
 		"log": {
 			"warn": {
