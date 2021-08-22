@@ -7,7 +7,7 @@ module.exports = {
 			return;
 		}
 
-		if (reaction.count >= channels.scrapbook.minimumReactions) {
+		if (reaction.count === channels.scrapbook.minimumReactions) {
 			const scrapbookChannel = client.channels.cache.get(channels.scrapbook.id);
 
 			scrapbookChannel.send({
