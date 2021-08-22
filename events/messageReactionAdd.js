@@ -3,13 +3,11 @@ const { channels } = require("../config.json");
 module.exports = {
 	name: "messageReactionAdd",
 	async execute(reaction, _user, client) {
-		if (reaction._emoji.name !== "⭐") {
+		if (reaction._emoji.name !== channels.scrapbook.emoji) {
 			return;
 		}
 
-		console.log(reaction.message.attachments.first());
-
-		if (reaction.count >= 5) {
+		if (reaction.count >= channels.scrapbook.minimumReactions) {
 			const scrapbookChannel = client.channels.cache.get(channels.scrapbook.id);
 
 			scrapbookChannel.send({
