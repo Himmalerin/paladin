@@ -1,12 +1,11 @@
 {
-	"clientId": "012345678901234567",
-	"guildId": "012345678901234567",
-	"token": "xxxxxxxxxxxxxxxxxxxxxxxx.xxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxx",
+	"bot": {
+		"clientId": "012345678901234567",
+		"guildId": "012345678901234567",
+		"token": "xxxxxxxxxxxxxxxxxxxxxxxx.xxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+	},
 
 	"channels": {
-		"portal": {
-			"id": "012345678901234567"
-		},
 		"reactions": {
 			"id": "012345678901234567"
 		},
@@ -16,6 +15,9 @@
 			"minimumReactions": 5
 		},
 		"log": {
+			"portal": {
+				"id": "012345678901234567"
+			},
 			"warn": {
 				"id": "012345678901234567"
 			},
