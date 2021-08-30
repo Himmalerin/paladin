@@ -34,8 +34,8 @@
 	},
 
 	"bannedWords": {
-		"satiated": ["word1"],
-		"hungry": ["word2"]
+		"lazy": ["word1"],
+		"greedy": ["word2"]
 	},
 
 	"reactionRoles": [

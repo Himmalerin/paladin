@@ -9,21 +9,21 @@ module.exports = {
 
 		const msg = message.content.toLowerCase();
 
-		// "satiated" words should only be matched on their own, not inside of other words
-		const hasSatiatedBannedWord = bannedWords.satiated.find((word) => {
+		// "lazy" words should only be matched on their own, not inside of other words
+		const hasLazyBannedWord = bannedWords.lazy.find((word) => {
 			if (msg.split(" ").includes(word)) {
 				return word;
 			}
 		});
 
-		// "hungry" words should be matched if they're anywhere inside of the message
-		const hasHungryBannedWord = bannedWords.hungry.find((word) => {
+		// "greedy" words should be matched if they're anywhere inside of the message
+		const hasGreedyBannedWord = bannedWords.greedy.find((word) => {
 			if (msg.includes(word)) {
 				return word;
 			}
 		});
 
-		const word = hasSatiatedBannedWord || hasHungryBannedWord;
+		const word = hasLazyBannedWord || hasGreedyBannedWord;
 
 		if (word) {
 			const logChannel = client.channels.cache.get(channels.log.warn.id);
