@@ -7,6 +7,15 @@ module.exports = {
 			return;
 		}
 
+		if (reaction.partial) {
+			try {
+				await reaction.fetch();
+			} catch (error) {
+				console.error("Something went wrong when fetching the message:", error);
+				return;
+			}
+		}
+
 		if (reaction.count === channels.scrapbook.minimumReactions) {
 			const scrapbookChannel = client.channels.cache.get(channels.scrapbook.id);
 
