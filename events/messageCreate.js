@@ -1,4 +1,4 @@
-const { channels, bannedWords } = require("../config.json");
+const { channels, badWords } = require("../config.json");
 
 module.exports = {
 	name: "messageCreate",
@@ -10,14 +10,14 @@ module.exports = {
 		const msg = message.content.toLowerCase();
 
 		// "lazy" words should only be matched on their own, not inside of other words
-		const hasLazyBannedWord = bannedWords.lazy.find((word) => {
+		const hasLazyBannedWord = badWords.lazy.find((word) => {
 			if (msg.split(" ").includes(word)) {
 				return word;
 			}
 		});
 
 		// "greedy" words should be matched if they're anywhere inside of the message
-		const hasGreedyBannedWord = bannedWords.greedy.find((word) => {
+		const hasGreedyBannedWord = badWords.greedy.find((word) => {
 			if (msg.includes(word)) {
 				return word;
 			}

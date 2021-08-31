@@ -39,7 +39,7 @@
 		}
 	},
 
-	"bannedWords": {
+	"badWords": {
 		"lazy": ["word1"],
 		"greedy": ["word2"]
 	},

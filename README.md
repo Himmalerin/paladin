@@ -6,7 +6,7 @@ Paladin is a simple moderation bot with support for:
 -   logging users joining/leaving the server
 -   logging message edits and deletions
 -   moderator actions (kicking/banning/unbanning users)
--   "banned words" filter (with thread support!)
+-   "bad words" filter (with thread support!)
 
 Support is planned for:
 
