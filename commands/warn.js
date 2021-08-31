@@ -29,9 +29,8 @@ module.exports = {
 			return interaction.reply("That user isn't in this server.");
 		}
 
-		const logChannel = interaction.client.channels.cache.get(channels.log.warn.id);
-
-		logChannel
+		await interaction.client.channels.cache
+			.get(channels.log.warn.id)
 			.send({
 				embeds: [
 					{
@@ -49,10 +48,17 @@ module.exports = {
 					},
 				],
 			})
-			.then(() => interaction.reply(`User successfully warned!`))
 			.catch((error) => {
 				console.error(error);
-				return interaction.reply(`Something went wrong: \`${error}\``);
+				return interaction.reply(
+					`User successfully warned, but something went wrong! Am I allowed to send messages in the channel used for logging warns? \`${error}\``
+				);
 			});
+
+		if (interaction.replied === true) {
+			return;
+		}
+
+		interaction.reply("User successfully warned!");
 	},
 };

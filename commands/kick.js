@@ -29,34 +29,41 @@ module.exports = {
 			return interaction.reply("That user isn't in this server.");
 		}
 
-		interaction.guild.members
-			.kick(target, {
-				reason: reason ?? `Contact ${author.user.username}#${author.user.discriminator} (${author.user.id}) for details.`,
-			})
-			.then(() => {
-				const logChannel = interaction.client.channels.cache.get(channels.log.kick.id);
-				logChannel.send({
-					embeds: [
-						{
-							color: 0xf67300,
-							author: {
-								name: `${author.user.username}#${author.user.discriminator} (${author.user.id})`,
-								icon_url: author.user.displayAvatarURL(),
-							},
-							description: [
-								`**User**: \`${target.username}#${target.discriminator}\` (<@${target.id}>)`,
-								`**Action**: Kick`,
-								`**Reason**: ${reason ?? `Contact <@${user.id}> for details.`}`,
-							].join("\n"),
-							timestamp: new Date(),
+		interaction.guild.members.kick(target, {
+			reason: reason ?? `Contact ${author.user.username}#${author.user.discriminator} (${author.user.id}) for details.`,
+		});
+
+		// Await sending the log message so if it fails for some reason we can avoid trying to send two `interaction.reply`s
+		interaction.client.channels.cache
+			.get(channels.log.kick.id)
+			.send({
+				embeds: [
+					{
+						color: 0xf67300,
+						author: {
+							name: `${author.user.username}#${author.user.discriminator} (${author.user.id})`,
+							icon_url: author.user.displayAvatarURL(),
 						},
-					],
-				});
+						description: [
+							`**User**: \`${target.username}#${target.discriminator}\` (<@${target.id}>)`,
+							`**Action**: Kick`,
+							`**Reason**: ${reason ?? `Contact <@${user.id}> for details.`}`,
+						].join("\n"),
+						timestamp: new Date(),
+					},
+				],
 			})
-			.then(() => interaction.reply(`User successfully kicked!`))
 			.catch((error) => {
 				console.error(error);
-				return interaction.reply(`Something went wrong: \`${error}\``);
+				return interaction.reply(
+					`User successfully kicked, but something went wrong! Am I allowed to send messages in the channel used for logging kicks? \`${error}\``
+				);
 			});
+
+		if (interaction.replied === true) {
+			return;
+		}
+
+		interaction.reply("User successfully kicked!");
 	},
 };

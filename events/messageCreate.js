@@ -23,11 +23,13 @@ module.exports = {
 			}
 		});
 
-		const word = hasLazyBannedWord || hasGreedyBannedWord;
+		if (hasLazyBannedWord === undefined && hasGreedyBannedWord === undefined) {
+			return;
+		}
 
-		if (word) {
-			const logChannel = client.channels.cache.get(channels.log.warn.id);
-			logChannel.send({
+		client.channels.cache
+			.get(channels.log.warn.id)
+			.send({
 				embeds: [
 					{
 						color: 0xfdbc4b,
@@ -43,10 +45,10 @@ module.exports = {
 						timestamp: new Date(),
 					},
 				],
-			});
+			})
+			.catch(console.error);
 
-			await message.reply(`One of the words in your message, ||${word}||, is not allowed in this server.`);
-			message.delete().catch((error) => message.channel.send(`\`${error}\``));
-		}
+		await message.reply(`One of the words in your message, ||${word}||, is not allowed in this server.`);
+		message.delete().catch((error) => message.channel.send(`\`${error}\``));
 	},
 };

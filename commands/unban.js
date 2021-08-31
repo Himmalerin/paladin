@@ -30,33 +30,41 @@ module.exports = {
 			return interaction.reply("That user isn't banned!");
 		}
 
-		interaction.guild.members
-			.unban(target, {
-				reason: reason ?? `Contact ${author.user.username}#${author.user.discriminator} (${author.user.id}) for details.`,
-			})
-			.then(() => interaction.reply(`User successfully unbanned!`))
-			.then(() => {
-				const logChannel = interaction.client.channels.cache.get(channels.log.unban.id);
-				logChannel.send({
-					embeds: [
-						{
-							color: 0x1d99d3,
-							author: {
-								name: `${author.user.username}#${author.user.discriminator} (${author.user.id})`,
-								icon_url: author.user.displayAvatarURL(),
-							},
-							description:
-								`**User**: \`${target.username}#${target.discriminator}\` (<@${target.id}>)\n` +
-								"**Action**: Unban\n" +
-								`**Reason**: ${reason ?? `Contact <@${user.id}> for details.`}`,
-							timestamp: new Date(),
+		interaction.guild.members.unban(target, {
+			reason: reason ?? `Contact ${author.user.username}#${author.user.discriminator} (${author.user.id}) for details.`,
+		});
+
+		// Await sending the log message so if it fails for some reason we can avoid trying to send two `interaction.reply`s
+		await interaction.client.channels.cache
+			.get(channels.log.ban.id)
+			.send({
+				embeds: [
+					{
+						color: 0x1d99d3,
+						author: {
+							name: `${author.user.username}#${author.user.discriminator} (${author.user.id})`,
+							icon_url: author.user.displayAvatarURL(),
 						},
-					],
-				});
+						description: [
+							`**User**: \`${target.username}#${target.discriminator}\` (<@${target.id}>)\n`,
+							`**Action**: Unban\n`,
+							`**Reason**: ${reason ?? `Contact <@${user.id}> for details.`}`,
+						].join("\n"),
+						timestamp: new Date(),
+					},
+				],
 			})
 			.catch((error) => {
 				console.error(error);
-				return interaction.reply(`Something went wrong: \`${error}\``);
+				return interaction.reply(
+					`User successfully unbanned, but something went wrong! Am I allowed to send messages in the channel used for logging unbans? \`${error}\``
+				);
 			});
+
+		if (interaction.replied === true) {
+			return;
+		}
+
+		interaction.reply("User successfully banned!");
 	},
 };

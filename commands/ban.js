@@ -30,34 +30,41 @@ module.exports = {
 			return interaction.reply("That user is already banned!");
 		}
 
-		interaction.guild.members
-			.ban(target, {
-				reason: reason ?? `Contact ${author.user.username}#${author.user.discriminator} (${author.user.id}) for details.`,
-			})
-			.then(() => {
-				const logChannel = interaction.client.channels.cache.get(channels.log.ban.id);
-				logChannel.send({
-					embeds: [
-						{
-							color: 0xed1515,
-							author: {
-								name: `${author.user.username}#${author.user.discriminator} (${author.user.id})`,
-								icon_url: author.user.displayAvatarURL(),
-							},
-							description: [
-								`**User**: \`${target.username}#${target.discriminator}\` (<@${target.id}>)`,
-								`**Action**: Ban`,
-								`**Reason**: ${reason ?? `Contact <@${user.id}> for details.`}`,
-							].join("\n"),
-							timestamp: new Date(),
+		interaction.guild.members.ban(target, {
+			reason: reason ?? `Contact ${author.user.username}#${author.user.discriminator} (${author.user.id}) for details.`,
+		});
+
+		// Await sending the log message so if it fails for some reason we can avoid trying to send two `interaction.reply`s
+		await interaction.client.channels.cache
+			.get(channels.log.ban.id)
+			.send({
+				embeds: [
+					{
+						color: 0xed1515,
+						author: {
+							name: `${author.user.username}#${author.user.discriminator} (${author.user.id})`,
+							icon_url: author.user.displayAvatarURL(),
 						},
-					],
-				});
+						description: [
+							`**User**: \`${target.username}#${target.discriminator}\` (<@${target.id}>)`,
+							`**Action**: Ban`,
+							`**Reason**: ${reason ?? `Contact <@${user.id}> for details.`}`,
+						].join("\n"),
+						timestamp: new Date(),
+					},
+				],
 			})
-			.then(() => interaction.reply(`User successfully banned!`))
 			.catch((error) => {
 				console.error(error);
-				interaction.reply(`Something went wrong: \`${error}\``);
+				return interaction.reply(
+					`User successfully banned, but something went wrong! Am I allowed to send messages in the channel used for logging bans? \`${error}\``
+				);
 			});
+
+		if (interaction.replied === true) {
+			return;
+		}
+
+		interaction.reply("User successfully banned!");
 	},
 };

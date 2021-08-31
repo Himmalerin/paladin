@@ -8,23 +8,23 @@ module.exports = {
 			return;
 		}
 
-		const contextChannel = client.channels.cache.get(message.channelId);
-
-		const deleteChannel = client.channels.cache.get(channels.log.delete.id);
-		deleteChannel.send({
-			embeds: [
-				{
-					color: 0xed1515,
-					title: `Message deleted in #${contextChannel.name}`,
-					url: message.url,
-					author: {
-						name: `${message.author.username}#${message.author.discriminator} (${message.author.id})`,
-						icon_url: message.author.displayAvatarURL(),
+		client.channels.cache
+			.get(channels.log.delete.id)
+			.send({
+				embeds: [
+					{
+						color: 0xed1515,
+						title: `Message deleted in #${client.channels.cache.get(message.channelId).name}`,
+						url: message.url,
+						author: {
+							name: `${message.author.username}#${message.author.discriminator} (${message.author.id})`,
+							icon_url: message.author.displayAvatarURL(),
+						},
+						description: message.content.length < 2000 ? message.content : "*too large to display*",
+						timestamp: new Date(),
 					},
-					description: message.content.length < 2000 ? message.content : "*too large to display*",
-					timestamp: new Date(),
-				},
-			],
-		});
+				],
+			})
+			.catch(console.error);
 	},
 };

@@ -13,23 +13,25 @@ module.exports = {
 			oldContent = "*original version was uncached or too large to display*";
 		}
 
-		const editChannel = client.channels.cache.get(channels.log.edit.id);
-		editChannel.send({
-			embeds: [
-				{
-					title: `Message Context`,
-					url: newMessage.url,
-					author: {
-						name: `${newMessage.author.username}#${newMessage.author.discriminator} (${newMessage.author.id})`,
-						icon_url: newMessage.author.displayAvatarURL(),
+		client.channels.cache
+			.get(channels.log.edit.id)
+			.send({
+				embeds: [
+					{
+						title: `Message Context`,
+						url: newMessage.url,
+						author: {
+							name: `${newMessage.author.username}#${newMessage.author.discriminator} (${newMessage.author.id})`,
+							icon_url: newMessage.author.displayAvatarURL(),
+						},
+						description: [
+							`**Before:** ${oldContent}`,
+							`**After:** ${newMessage.content.length < 2000 ? newMessage.content : "*too large to display*"}`,
+						].join("\n"),
+						timestamp: new Date(),
 					},
-					description: [
-						`**Before:** ${oldContent}`,
-						`**After:** ${newMessage.content.length < 2000 ? newMessage.content : "*too large to display*"}`,
-					].join("\n"),
-					timestamp: new Date(),
-				},
-			],
-		});
+				],
+			})
+			.catch(console.error);
 	},
 };
