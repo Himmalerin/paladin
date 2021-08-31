@@ -7,7 +7,7 @@ module.exports = {
 		// I would prefer using a ternary operator here (like I do below for the newMessage.content),
 		// but there's enough logic I feel like it reads better as an if statement
 		let oldContent = "";
-		if (oldMessage.content !== null && oldMessage.content.length < 1900) {
+		if (oldMessage.content !== null && oldMessage.content.length < 2000) {
 			oldContent = oldMessage.content;
 		} else {
 			oldContent = "*original version was uncached or too large to display*";
@@ -25,7 +25,7 @@ module.exports = {
 					},
 					description: [
 						`**Before:** ${oldContent}`,
-						`**After:** ${newMessage.content.length < 1900 ? newMessage.content : "*too large to display*"}`,
+						`**After:** ${newMessage.content.length < 2000 ? newMessage.content : "*too large to display*"}`,
 					].join("\n"),
 					timestamp: new Date(),
 				},
