@@ -36,6 +36,8 @@ module.exports = {
 							timestamp: new Date(),
 						},
 					],
+					// Videos can't be placed inside embeds like images can so attach them as regular files instead
+					// Has the unfortunate effect of making the video appear above the embed, but whatever
 					files: [...(videoAttachment ? videoAttachment.url : [])],
 				})
 				.catch(console.error);
