@@ -16,6 +16,9 @@ module.exports = {
 			}
 		}
 
+		const imageAttachment = reaction.message.attachments.find((a) => a.contentType.startsWith("image/"));
+		const videoAttachment = reaction.message.attachments.find((a) => a.contentType.startsWith("video/"));
+
 		if (reaction.count === channels.scrapbook.minimumReactions) {
 			client.channels.cache
 				.get(channels.scrapbook.id)
@@ -29,10 +32,11 @@ module.exports = {
 								icon_url: reaction.message.author.displayAvatarURL(),
 							},
 							description: reaction.message.content.length < 2000 ? reaction.message.content : "Message too long to display!",
-							...(reaction.message.attachments.first() && { image: { url: reaction.message.attachments.first().url } }),
+							...(imageAttachment && { image: { url: imageAttachment.url } }),
 							timestamp: new Date(),
 						},
 					],
+					files: [...(videoAttachment ? videoAttachment.url : [])],
 				})
 				.catch(console.error);
 		}
