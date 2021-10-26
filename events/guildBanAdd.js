@@ -51,7 +51,7 @@ module.exports = {
 							description: [
 								`**User**: \`${target.username}#${target.discriminator}\` (<@${target.id}>)`,
 								`**Action**: Ban`,
-								`**Reason**: ${reason ?? `Contact <@${user.id}> for details.`}`,
+								`**Reason**: ${reason ?? `Contact <@${executor.id}> for details.`}`,
 							].join("\n"),
 							timestamp: banLog.createdAt,
 						},
