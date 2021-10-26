@@ -34,7 +34,7 @@ module.exports = {
 		});
 
 		// Await sending the log message so if it fails for some reason we can avoid trying to send two `interaction.reply`s
-		interaction.client.channels.cache
+		await interaction.client.channels.cache
 			.get(channels.log.kick.id)
 			.send({
 				embeds: [
