@@ -30,7 +30,6 @@ module.exports = {
 
 				embedDescription.push(`${role.emoji.name} · <@&${role.id}>`);
 			}
-			// console.log(buttons);
 
 			const rows = [];
 			for (let index = 0; index < Math.ceil(buttons.length / 5); index++) {
