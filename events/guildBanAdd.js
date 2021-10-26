@@ -12,8 +12,6 @@ module.exports = {
 		// Since there's only 1 audit log entry in this collection, grab the first one
 		const banLog = fetchedLogs.entries.first();
 
-		console.log(banLog, banLog.createdAt, banLog.createdTimestamp);
-
 		// Perform a coherence check to make sure that there's *something*
 		if (!banLog) {
 			banLogChannel

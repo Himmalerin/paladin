@@ -26,11 +26,9 @@ const eventFiles = fs.readdirSync("./events").filter((file) => file.endsWith(".j
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
 	if (event.once) {
-		console.log(event.name);
 		client.once(event.name, async (...args) => event.execute(...args, client));
 	} else {
 		client.on(event.name, async (...args) => {
-			console.log(event.name);
 			return event.execute(...args, client);
 		});
 	}
