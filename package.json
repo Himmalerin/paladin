@@ -1,16 +1,20 @@
 {
-	"name": "paladin",
-	"version": "1.0.0",
-	"description": "A simple Discord moderation bot.",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"author": "Caleb JA",
-	"license": "EUPL-1.2",
-	"dependencies": {
-		"@discordjs/rest": "^0.1.1-canary.0",
-		"discord-api-types": "^0.24.0",
-		"discord.js": "^13.2.0"
-	}
+  "name": "paladin",
+  "version": "1.0.0",
+  "description": "A simple Discord moderation bot.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "author": {
+    "name": "Ophelia Anderson",
+    "email": "hi@ophelia.ink",
+    "url": "https://ophelia.ink"
+  },
+  "license": "EUPL-1.2",
+  "dependencies": {
+    "@discordjs/rest": "^0.2.0-canary.0",
+    "discord-api-types": "^0.26.1",
+    "discord.js": "^13.6.0"
+  }
 }
